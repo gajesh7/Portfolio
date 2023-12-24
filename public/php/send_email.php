@@ -1,50 +1,33 @@
 <?php
-<!-- use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-// Include PHPMailer Autoload file
-require 'path/to/PHPMailer/src/Exception.php';
-require 'path/to/PHPMailer/src/PHPMailer.php';
-require 'path/to/PHPMailer/src/SMTP.php'; -->
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Configure your SMTP settings
-    $mail = new PHPMailer(true);
-    $mail->isSMTP();
-    $mail->Host = 'smtp.gmail.com';
-    $mail->SMTPAuth = true;
-    $mail->Username = 'gajeshacharya9@gmail.com';
-    $mail->Password = '249DC019A261511EF98299D094F9A511B1B3';
-    $mail->SMTPSecure = 'tls'; // Use 'tls' or 'ssl' based on your server
-    $mail->Port = 587; // Use 587 for TLS or 465 for SSL
 
-    try {
-        // Recipient email address
-        $to = 'gajeshacharya9@gmail.com';
-        $subject = 'New Contact Form Submission';
-    
-        $name = $_POST["name"];
-        $email = $_POST["email"];
-        $phone = $_POST["phone"];
-        $message = $_POST["message"];
-        
-        // Construct the email body
-        $email_body = "Name: $name\n";
-        $email_body .= "Email: $email\n";
-        $email_body .= "Phone: $phone\n\n";
-        $email_body .= "Message:\n$message";
+    echo "Hello, PHP!";
 
-        // Additional headers
-        $headers = "From: $email";
+    error_log("Request method: " . $_SERVER["REQUEST_METHOD"]);
 
-        // Send the email
-        if (mail($to, $subject, $email_body, $headers)) {
-            echo "Email sent successfully!";
-        } else {
-            echo "Error sending email.";
-        }
-    } catch (Exception $e) {
-        echo "Error sending email: {$mail->ErrorInfo}";
-    }
+    $name = $_POST["name"];
+    $email = $_POST["email"];
+    $phone = $_POST["phone"];
+    $message = $_POST["message"];
+
+    // Set the recipient email address
+    $to = "gajeshacharya9@gmail.com";
+
+    // Set the subject of the email
+    $subject = "New Contact Form Submission";
+
+    // Build the email message
+    $email_message = "Name: $name\n";
+    $email_message .= "Email: $email\n\n";
+    $email_message .= "Phone: $phone\n\n";
+    $email_message .= "Message:\n$message";
+
+    // Send the email
+    mail($to, $subject, $email_message);
+
+    // Redirect to a thank you page
+    echo '<script>window.location.href = window.location.href;</script>';
+    exit;
 }
 ?>

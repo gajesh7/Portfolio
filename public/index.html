@@ -502,7 +502,7 @@
 				</div>
 
 				<div class="col-md-7 mb-5 mb-md-0">
-					<form id="emailForm" class="site-form">
+					<form id="emailForm" class="site-form" action="./php/mail.php" method="post">
 						<h6 class="mb-5">"Excited to connect and explore collaboration opportunities—let's bring your design visions to life together!"</h6>
 						<div class="form-group">
 							<input type="text" name="name" class="form-control px-3 py-4" placeholder="Your Name">
@@ -517,7 +517,7 @@
 							<textarea class="form-control px-3 py-4" name="message" cols="30" rows="10" placeholder="Write a Message"></textarea>
 						</div>
 						<div class="form-group">
-							<input type="submit" onclick="send_email()" class="btn btn-primary  px-4 py-3" value="Send Message">
+							<input type="submit" class="btn btn-primary  px-4 py-3" value="Send Message">
 						</div>
 					</form>
 				</div>
@@ -569,33 +569,6 @@
 			
 		</div>
 	</footer>
-
-	<script>
-		function sendEmail() {
-		  var xhr = new XMLHttpRequest();
-		  var formData = new FormData(document.getElementById("emailForm"));
-		alert('clicked')
-		  xhr.open("POST", "./php/send_email.php", true);
-	  
-		  xhr.onreadystatechange = function () {
-			if (xhr.readyState == 4) {
-			  if (xhr.status == 200) {
-				alert(xhr.responseText);
-			  } else {
-				alert("Error sending email. Please try again.");
-			  }
-			}
-		  };
-	  
-		  xhr.onerror = function () {
-			alert("Error sending email. Please try again.");
-		  };
-	  
-		  xhr.send(formData);
-		}
-	  </script>
-	  
-
 
 
 	<script src="js/vendor/jquery.min.js"></script>
